@@ -22,4 +22,5 @@ Crop and Align Face by MTCNN
    usage: Face_align_crop.py [-h] [--input_path INPUT_PATH]
                           [--output_path OUTPUT_PATH] [--face-num FACE_NUM]
                           [--gpu GPU] [--face_size FACE_SIZE]
+                          
    Run python Face_align_crop.py --input_path ... --output_path ... --gpu ... --face_size ...
