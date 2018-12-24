@@ -1,0 +1,17 @@
+# Face_crop_align_mtcnn
+Crop and Align Face by MTCNN
+
+## Environment
+
+1. The test environment is
+    - Python 3.5.2
+    - mxnet 1.2.0
+    - numpy 1.15.0
+    - scikit-image 0.14.0 
+    - python-opencv 3.4.3
+    - tqdm 4.28.1
+
+## Reform
+   some part of the content reference from [insightface](https://github.com/deepinsight/insightface)
+   
+## How to use it
