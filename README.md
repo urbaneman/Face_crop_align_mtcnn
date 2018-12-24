@@ -11,7 +11,7 @@ Crop and Align Face by MTCNN
     - python-opencv 3.4.3
     - tqdm 4.28.1
 
-## Reform
+## Reference
 
    some part of the content reference from [insightface](https://github.com/deepinsight/insightface)
    
