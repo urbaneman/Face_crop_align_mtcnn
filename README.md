@@ -20,7 +20,7 @@ Crop and Align Face by MTCNN
    Just specify input path, output path, output face's size with '--input_path', '--output_path' and '--face_size', if you want use gpu, please specify gpu id with '--gpu'. 
    
    usage: Face_align_crop.py [-h] [--input_path INPUT_PATH]
-                          [--output_path OUTPUT_PATH] [--face-num FACE_NUM]
+                          [--output_path OUTPUT_PATH]
                           [--gpu GPU] [--face_size FACE_SIZE]
                           
    Run python Face_align_crop.py --input_path ... --output_path ... --gpu ... --face_size ...
