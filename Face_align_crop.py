@@ -9,7 +9,7 @@ from align_mtcnn.mtcnn_detector import MtcnnDetector
 def getArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_path', type=str, default='F:\images_5', help='the dir your dataset of face which need to crop')
-    parser.add_argument('--output_path', type=str, default='F:\images_5_face', help='the dir your dataset of the croped face where to save')
+    parser.add_argument('--output_path', type=str, default='F:\images_5_face', help='the dir the cropped faces of your dataset where to save')
     # parser.add_argument('--face-num', '-face_num', type=int, default=1, help='the max faces to crop in each image')
     parser.add_argument('--gpu', default=-1, type=int, help='gpu id， when the id == -1, use cpu')
     parser.add_argument('--face_size', type=str, default='224', help='the size of the face to save, the size x%2==0, and width equal height')
