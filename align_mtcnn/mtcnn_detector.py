@@ -699,6 +699,8 @@ class MtcnnDetector(object):
             #     src[:, 0] += (image_size[1] - 96)/2
             # if image_size[1] != 112:
             src[:, 0] += 8
+            # make the mark points up 8 pixels, for crop the chin in the cropped image
+            src[:, 1] -= 8
 
             if image_size[0] == image_size[1] and image_size[0] != 112:
                 src = src/112*image_size[0]
