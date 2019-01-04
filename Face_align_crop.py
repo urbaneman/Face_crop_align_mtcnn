@@ -8,9 +8,9 @@ from align_mtcnn.mtcnn_detector import MtcnnDetector
 
 def getArgs():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', type=str, default='J:/face-40000', help='the dir your dataset of face which need to crop')
-    parser.add_argument('--output_path', type=str, default='J:/face-40000-crop', help='the dir your dataset of the croped face where to save')
-    parser.add_argument('--face-num', '-face_num', type=int, default=1, help='the max faces to crop in each image')
+    parser.add_argument('--input_path', type=str, default='F:\images_5', help='the dir your dataset of face which need to crop')
+    parser.add_argument('--output_path', type=str, default='F:\images_5_face', help='the dir your dataset of the croped face where to save')
+    # parser.add_argument('--face-num', '-face_num', type=int, default=1, help='the max faces to crop in each image')
     parser.add_argument('--gpu', default=-1, type=int, help='gpu id， when the id == -1, use cpu')
     parser.add_argument('--face_size', type=str, default='224', help='the size of the face to save, the size x%2==0, and width equal height')
     args = parser.parse_args()
@@ -19,7 +19,7 @@ def getArgs():
 def crop_align_face(args):
     input_dir = args.input_path
     output_dir = args.output_path
-    face_num = args.face_num
+    # face_num = args.face_num
     if not os.path.exists(input_dir):
         print('the input path is not exists!')
         sys.exit()
@@ -36,6 +36,7 @@ def crop_align_face(args):
     mtcnn = MtcnnDetector(model_folder=mtcnn_path, ctx=ctx, num_worker=1, accurate_landmark=True)
 
     count_no_find_face = 0
+    count_crop_images = 0
 
     for root, dirs, files in tqdm(os.walk(input_dir)):
         # print(root)
@@ -63,15 +64,19 @@ def crop_align_face(args):
                 count_no_find_face += 1
                 continue
             # print(bbox, points)
-            bbox = bbox[0, 0:4]
-            points = points[0, :].reshape((2, 5)).T
-            face = mtcnn.preprocess(face_img, bbox, points, image_size=args.face_size)
-            # file_path_save = os.path.join(output_root, file_name)
-            # cv2.imwrite(file_path_save, face)
-            cv2.imshow('face', face)
-            cv2.waitKey(0)
+            for i in range(bbox.shape[0]):
+                bbox_ = bbox[i, 0:4]
+                points_ = points[i, :].reshape((2, 5)).T
+                face = mtcnn.preprocess(face_img, bbox_, points_, image_size=args.face_size)
+                face_name = '%s_%d.jpg'%(file_name.split('.')[0], i)
+                file_path_save = os.path.join(output_root, face_name)
+                cv2.imwrite(file_path_save, face)
+                # cv2.imshow('face', face)
+                # cv2.waitKey(0)
+            count_crop_images += 1
+    print('%d images crop successful!' % count_crop_images)
     print('%d images do not crop successful!' % count_no_find_face)
 
-
-args = getArgs()
-crop_align_face(args)
+if __name__ == '__main__':
+    args = getArgs()
+    crop_align_face(args)
